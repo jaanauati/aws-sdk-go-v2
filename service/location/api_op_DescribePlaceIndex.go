@@ -128,6 +128,10 @@ func (c *Client) addOperationDescribePlaceIndexMiddlewares(stack *middleware.Sta
 	if err = addResolveEndpointMiddleware(stack, options); err != nil {
 		return err
 	}
+	if err = v4.AddComputePayloadSHA256Middleware(stack); err != nil {
+		return err
+	}
+
 	if err = addRetryMiddlewares(stack, options); err != nil {
 		return err
 	}
